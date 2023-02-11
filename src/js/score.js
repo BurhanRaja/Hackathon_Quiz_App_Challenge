@@ -1,8 +1,7 @@
+// Add Previous Score Cards
+
 const scoreCont = document.querySelector(".scores");
-
 let userDetails = JSON.parse(localStorage.getItem("userTrack"));
-
-console.log(userDetails);
 
 if (userDetails) {
   for (let i = 0; i < userDetails.length; i++) {

@@ -1,5 +1,10 @@
 import data from "../api/dataset.json";
-import { createQuizOptions, getAllAnswer } from "./quiz";
+import {
+  createQuizOptions,
+  getAllAnswer,
+  shuffleOptions,
+  shuffleQuestions,
+} from "./quiz";
 
 const navBar = document.querySelector(".navbar");
 
@@ -31,6 +36,10 @@ const endCont = document.querySelector(".end-message");
 const resultBtn = document.querySelector(".result-btn");
 
 const username = document.querySelector(".username");
+
+// Alert
+const alertCont = document.querySelector(".alert");
+const alertText = document.querySelector(".alert p");
 
 if (localStorage.getItem("user")) {
   username.textContent = localStorage.getItem("user");
@@ -67,6 +76,7 @@ for (let i = 0; i < topicItem.length; i++) {
     }
 
     topicData = data[topic];
+    topicData = shuffleQuestions(topicData);
     allAnwers = getAllAnswer(topicData);
   });
 }
@@ -80,13 +90,15 @@ startBtn.addEventListener("click", () => {
     formCont.classList.add("inactive");
     navBar.classList.add("inactive");
 
-    // Create 1st Quiz
+    // Create 1st question
     question.textContent = topicData[count].question;
-    createQuizOptions(topicData[count].options, options);
+    let sOptions = shuffleOptions(topicData[count].options);
+    createQuizOptions(sOptions, options);
     quiz.classList.add("active");
 
     quizCont.classList.remove("inactive");
 
+    // Time limit to answer one question
     timer = setInterval(() => {
       if (timeCounter === 0) {
         question.textContent = "";
@@ -100,11 +112,22 @@ startBtn.addEventListener("click", () => {
 
       timing.textContent = timeCounter--;
     }, 1000);
+  } else {
+    alertCont.classList.remove("inactive");
+
+    // Alert
+    alertText.textContent = "Please Select a Topic";
+    alertCont.style.backgroundColor = "red";
+    let timer = setTimeout(() => {
+      alertCont.classList.add("inactive");
+      clearTimeout(timer);
+    }, 3000);
   }
 });
 
 // On Sumbit an answer
 submitBtn.addEventListener("click", () => {
+  // Check if an option is selected
   let answer = document.querySelectorAll(".active .options .option-item input");
   let flag = false;
   answer.forEach((ans) => {
@@ -115,41 +138,52 @@ submitBtn.addEventListener("click", () => {
   });
 
   if (!flag) {
-    return -1;
-  }
+    alertCont.classList.remove("inactive");
 
-  // Check if the questions are finished
-  if (count + 1 === topicData.length) {
-    question.textContent = "";
-    options.innerHTML = "";
-    submitBtn.classList.add("inactive");
-    quitBtn.classList.add("inactive");
-    endCont.classList.remove("inactive");
-    message.textContent = "Well Done! You answered All the Questions.";
-    clearInterval(timer);
-    timeCounter = 0;
+    // Alert
+    alertText.textContent = "Please Select an Option";
+    alertCont.style.backgroundColor = "red";
+    let timer = setTimeout(() => {
+      alertCont.classList.add("inactive");
+      clearTimeout(timer);
+    }, 3000);
   } else {
-    clearInterval(timer);
+    // Check if the questions are finished
+    if (count + 1 === topicData.length) {
+      question.textContent = "";
+      options.innerHTML = "";
+      submitBtn.classList.add("inactive");
+      quitBtn.classList.add("inactive");
+      endCont.classList.remove("inactive");
+      message.textContent = "Well Done! You answered All the Questions.";
+      clearInterval(timer);
+      timing.textContent = 0;
+    } else {
+      clearInterval(timer);
 
-    count++;
+      count++;
 
-    question.textContent = topicData[count].question;
-    options.innerHTML = "";
-    createQuizOptions(topicData[count].options, options);
-    timeCounter = 15;
+      // Add Question and Option
+      question.textContent = topicData[count].question;
+      options.innerHTML = "";
+      let sOptions = shuffleOptions(topicData[count].options);
+      createQuizOptions(sOptions, options);
+      timeCounter = 15;
 
-    timer = setInterval(() => {
-      if (timeCounter === 0) {
-        question.textContent = "";
-        options.innerHTML = "";
-        submitBtn.classList.add("inactive");
-        quitBtn.classList.add("inactive");
-        endCont.classList.remove("inactive");
-        message.textContent = "Oh! You went out of Time. Please Try Again.";
-        clearInterval(timer);
-      }
-      timing.textContent = timeCounter--;
-    }, 1000);
+      // Time limit to answer one question
+      timer = setInterval(() => {
+        if (timeCounter === 0) {
+          question.textContent = "";
+          options.innerHTML = "";
+          submitBtn.classList.add("inactive");
+          quitBtn.classList.add("inactive");
+          endCont.classList.remove("inactive");
+          message.textContent = "Oh! You went out of Time. Please Try Again.";
+          clearInterval(timer);
+        }
+        timing.textContent = timeCounter--;
+      }, 1000);
+    }
   }
 });
 
@@ -173,7 +207,14 @@ resultBtn.addEventListener("click", () => {
 
   let userStorage = JSON.parse(localStorage.getItem("userTrack"));
 
-  if (userStorage) {
+  if (
+    userStorage &&
+    !userStorage.contains({
+      topic: topic,
+      userAnswer: rightAnswerCount,
+      totalScore: allAnwers.length,
+    })
+  ) {
     localStorage.removeItem("userTrack");
     localStorage.setItem(
       "userTrack",

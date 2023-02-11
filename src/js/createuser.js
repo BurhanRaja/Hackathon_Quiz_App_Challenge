@@ -13,25 +13,29 @@ const alertText = document.querySelector(".alert p");
 
 let inputUser = "";
 
+// Hide Create Btn if user
 if (localStorage.getItem("user")) {
     createBtn.classList.add("inactive")
   }
 
+  // Open modal
 createBtn.addEventListener("click", () => {
   createCont.classList.remove("inactive");
 });
 
+// Input
 inp.addEventListener("change", () => {
   inputUser = inp.value;
 });
 
+// Create User
 addBtn.addEventListener("click", () => {
   if (inputUser !== "") {
     createCont.classList.add("inactive");
     localStorage.setItem("user", inputUser);
 
     alertCont.classList.remove("inactive");
-    alertText.textContent = "Invalid Credentials";
+    alertText.textContent = "User Created Successfully!";
     alertCont.style.backgroundColor = "green";
 
     let timer = setTimeout(() => {
@@ -40,7 +44,7 @@ addBtn.addEventListener("click", () => {
     }, 3000);
   } else {
     alertCont.classList.remove("inactive");
-    alertText.textContent = "Invalid Credentials";
+    alertText.textContent = "Invalid Credentials!";
     alertCont.style.backgroundColor = "red";
     let timer = setTimeout(() => {
       alertCont.classList.add("inactive");
@@ -49,10 +53,13 @@ addBtn.addEventListener("click", () => {
   }
 });
 
+// Hide Modal
 cancelBtn.addEventListener("click", () => {
   createCont.classList.add("inactive");
 });
 
+
+// Enable Start Btn on index if user
 startQuizBtn.addEventListener("click", () => {
   if (localStorage.getItem("user")) {
     window.location.pathname = "/quiz.html";
