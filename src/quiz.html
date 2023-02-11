@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Quiz</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar" style="background-color: #8ecae6">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="form-container">
+        <div class="form-item">
+          <label for="name">Enter your name</label>
+          <input type="text" id="name" name="name" />
+        </div>
+
+        <div class="quiz-topic-container">
+          <p class="topic-select">Select Your Topic</p>
+          <div class="topic-item" style="background-color: #219ebc">
+            <p class="topic">Music</p>
+          </div>
+          <div class="topic-item" style="background-color: #023047">
+            <p class="topic">Modern Art</p>
+          </div>
+          <div class="topic-item" style="background-color: #ffb703">
+            <p class="topic">Coding</p>
+          </div>
+        </div>
+        <a><button class="start-btn">Start</button></a>
+      </div>
+
+      <div class="quiz-container inactive">
+        <div class="quiz-topic">
+          <p class="topic-title">Coding Quiz</p>
+          <p class="time">3</p>
+        </div>
+        <div class="quiz">
+          <div class="question">
+            <p></p>
+          </div>
+          <div class="options"></div>
+          <div class="add-answer">
+            <button class="submit-btn">Submit</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="./js/index.js"></script>
+    <script type="module" src="./js/quiz.js"></script>
+  </body>
+</html>
