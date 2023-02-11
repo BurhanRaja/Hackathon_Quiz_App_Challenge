@@ -12,21 +12,20 @@
       <nav class="navbar" style="background-color: #8ecae6">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="./quiz.html">Quiz</a></li>
+          <li><a href="score.html">Score</a></li>
         </ul>
+        <p class="username"></p>
       </nav>
     </header>
-
     <main>
+      <div class="alert inactive">
+        <p>Hello World</p>
+      </div>
       <div class="form-container">
-        <div class="form-item">
-          <label for="name">Enter your name</label>
-          <input type="text" id="name" name="name" />
-        </div>
-
         <div class="quiz-topic-container">
-          <p class="topic-select">Select Your Topic</p>
+          <h1 class="welcome-to-quiz">Welcome to Quiz App</h1>
+          <p class="topic-select">Select Topic</p>
           <div class="topic-item" style="background-color: #219ebc">
             <p class="topic">Music</p>
           </div>
@@ -42,8 +41,8 @@
 
       <div class="quiz-container inactive">
         <div class="quiz-topic">
-          <p class="topic-title">Coding Quiz</p>
-          <p class="time">3</p>
+          <p class="topic-title"></p>
+          <p class="time">15</p>
         </div>
         <div class="quiz">
           <div class="question">
@@ -52,6 +51,14 @@
           <div class="options"></div>
           <div class="add-answer">
             <button class="submit-btn">Submit</button>
+            <a  class="quit-btn" href="./quiz.html"><button>Quit</button></a>
+          </div>
+          <div class="end-message inactive">
+            <h1 class="message"></h1>
+            <h2 class="final-result"></h2>
+            <button class="result-btn">Get Result</button>
+            <a href="./quiz.html"><button class="play-again-btn">Play Again</button></a>
+            <a class="quit-btn" href="./index.html"><button >Quit</button></a>
           </div>
         </div>
       </div>
@@ -59,5 +66,6 @@
 
     <script type="module" src="./js/index.js"></script>
     <script type="module" src="./js/quiz.js"></script>
+
   </body>
 </html>

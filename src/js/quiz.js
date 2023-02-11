@@ -22,7 +22,7 @@ export function createQuizOptions(options, optionCont) {
     inp.value = options[i];
 
     label.textContent = options[i];
-    label.for = options[i];
+    label.setAttribute("for", options[i]);
     
     optItem.appendChild(inp);
     optItem.appendChild(label);

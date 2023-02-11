@@ -17,13 +17,29 @@
     <header>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./score.html">Score</a></li>
         </ul>
+        <div>
+          <button class="sign-up-btn">Create User</button>
+          <p class="username"></p>
+        </div>
       </nav>
     </header>
     <main>
+      <div class="create-user-container inactive">
+        <div class="user-form">
+          <label for="username">Username</label><br />
+          <input type="text" name="username" id="username" />
+          <button class="create-btn">Create</button>
+          <button class="cancel-btn">Quit</button>
+        </div>
+      </div>
+
+      <div class="alert inactive">
+        <p></p>
+      </div>
+
       <div class="hero-container">
         <div class="hero-text">
           <div class="text">
@@ -31,18 +47,21 @@
               Take your <span>Knowledge</span> <br />
               to Next level
             </h1>
-            <a href="quiz.html"
+            <a
               ><button class="start-quiz-btn">
                 <span>Start Quiz</span>
-                <span class="right-arrow"><i class="fa-solid fa-chevron-right"></i></span></button
+                <span class="right-arrow"
+                  ><i class="fa-solid fa-chevron-right"></i
+                ></span></button
             ></a>
           </div>
         </div>
         <div class="hero-img">
-          <img src="./public/images/hero-image-2.svg" alt="Hero-Image" />
+          <img src="/public/images/hero-image-3.png" alt="Hero-Image" />
         </div>
       </div>
     </main>
     <script type="module" src="js/index.js"></script>
+    <script type="module" src="js/modal.js"></script>
   </body>
 </html>
