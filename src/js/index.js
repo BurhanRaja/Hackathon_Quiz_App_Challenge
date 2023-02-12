@@ -6,6 +6,7 @@ import {
   shuffleQuestions,
 } from "./quiz";
 
+
 const navBar = document.querySelector(".navbar");
 
 // Quiz Container
@@ -36,7 +37,7 @@ const finalResult = document.querySelector(".final-result");
 const endCont = document.querySelector(".end-message");
 const resultBtn = document.querySelector(".result-btn");
 
-const username = document.querySelector(".username");
+let username = document.querySelector(".username");
 
 // Alert
 const alertCont = document.querySelector(".alert");
@@ -131,6 +132,7 @@ let count = 0;
 
 // To start the quiz
 startBtn.addEventListener("click", () => {
+  console.log("hello");
   startQuiz();
 });
 
@@ -145,9 +147,6 @@ submitBtn.addEventListener("click", () => {
       flag = true;
     }
   });
-
-  console.log(userAnswer);
-  console.log(allAnwers);
 
   if (!flag) {
     alertCont.classList.remove("inactive");
@@ -228,7 +227,7 @@ resultBtn.addEventListener("click", () => {
           topic: topic,
           userAnswer: rightAnswerCount,
           totalScore: allAnwers.length,
-          date: new Date().toLocaleString()
+          date: new Date().toLocaleString(),
         },
         ...userStorage,
       ])
@@ -241,7 +240,7 @@ resultBtn.addEventListener("click", () => {
           topic: topic,
           userAnswer: rightAnswerCount,
           totalScore: allAnwers.length,
-          date: new Date().toLocaleString()
+          date: new Date().toLocaleString(),
         },
       ])
     );
@@ -261,3 +260,4 @@ playAgainBtn.addEventListener("click", () => {
   initializeQuiz();
   startQuiz();
 });
+
