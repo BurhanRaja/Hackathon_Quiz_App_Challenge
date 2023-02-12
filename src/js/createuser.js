@@ -38,6 +38,9 @@ addBtn.addEventListener("click", () => {
     alertText.textContent = "User Created Successfully!";
     alertCont.style.backgroundColor = "green";
 
+    createBtn.classList.add("inactive");
+    username.textContent = inputUser;
+
     let timer = setTimeout(() => {
       alertCont.classList.add("inactive");
       clearTimeout(timer);
