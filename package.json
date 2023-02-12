@@ -6,7 +6,7 @@
     "dev": "npx vite serve --host",
     "build": "npx vite build --emptyOutDir",
     "preview": "npx vite preview --host",
-    "deploy": "npx vite build --emptyOutDir && surge dist"
+    "deploy": "gh-pages -d dist"
   },
   "author": "Sachin Bhatnagar <sachin@knowledgehut.co> (https://www.knowledgehut.com)",
   "license": "AFL-3.0",
@@ -16,5 +16,8 @@
   },
   "msw": {
     "workerDirectory": "src/public"
+  },
+  "dependencies": {
+    "gh-pages": "^5.0.0"
   }
 }
