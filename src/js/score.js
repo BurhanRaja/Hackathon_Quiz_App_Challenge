@@ -1,5 +1,7 @@
 // Score
 const scoreCont = document.querySelector(".scores");
+let username = document.querySelector(".username");
+
 let userDetails = JSON.parse(localStorage.getItem("userTrack"));
 
 if (localStorage.getItem("user")) {
