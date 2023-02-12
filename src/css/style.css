@@ -22,7 +22,7 @@ a {
   text-align: center;
   font-size: 1.1rem;
   color: white;
-  position: absolute;
+  position: fixed;
   left: 30rem;
   top: 3rem;
   border-radius: 5px;
@@ -65,6 +65,7 @@ nav ul li a {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  border: none;
 }
 
 .username {
@@ -75,7 +76,6 @@ nav ul li a {
 .scorepage {
   cursor: pointer;
 }
-
 
 /* Hero Section */
 .hero-container {
@@ -119,6 +119,7 @@ nav ul li a {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
 }
 .start-quiz-btn .right-arrow {
   font-weight: 600;
@@ -142,7 +143,6 @@ nav ul li a {
   width: 32rem;
 }
 
-
 /* Create User */
 .create-user-container {
   display: flex;
@@ -153,7 +153,11 @@ nav ul li a {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 50%);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.5) 50%
+  );
 }
 .user-form {
   top: 10rem;
@@ -193,8 +197,6 @@ nav ul li a {
   border: none;
 }
 
-
-
 /* Select Topic Section */
 .welcome-to-quiz {
   text-align: center;
@@ -207,13 +209,6 @@ nav ul li a {
   align-items: center;
   flex-direction: column;
   background-color: #f8f9fa;
-}
-.form-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 50%;
 }
 input:focus {
   outline: none;
@@ -256,6 +251,7 @@ input:focus {
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
+
 }
 .selected {
   border: 2px solid rgb(0, 236, 0);
@@ -275,7 +271,6 @@ input:focus {
   top: -20px;
   left: -20px;
 }
-
 
 /* Quiz Section */
 .quiz-container {
@@ -348,7 +343,6 @@ input:focus {
   margin-top: 5px;
 }
 
-
 /* Last Section of Quiz */
 
 .end-message {
@@ -392,10 +386,32 @@ input:focus {
 }
 
 .scores {
-  background-color: rgb(182, 182, 182);
+  background-color: rgb(197 197 197);
   padding: 2rem;
 }
-
+.score-container {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  width: 50%;
+  margin: 1rem auto;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 0.5rem 2rem;
+}
+.head p {
+  font-size: 1.2rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+}
 
 /* General CSS */
 .inactive {
@@ -406,3 +422,133 @@ input:focus {
   display: block;
 }
 
+@media only screen and (max-width: 850px) {
+  .hero-container {
+    flex-direction: column-reverse;
+    padding: 7rem 1rem;
+  }
+
+  .hero-text {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-text .text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text a {
+    text-align: -webkit-center;
+  }
+
+  .hero-img {
+    width: 100%;
+  }
+  .alert {
+    left: 35%;
+  }
+
+  /* Topic */
+  .quiz-topic-container {
+    width: 75%;
+  }
+
+  .start-btn {
+    width: 65%;
+  }
+
+  /* Quiz */
+  .quiz {
+    width: 70%;
+  }
+
+  /* Score */
+  .scores {
+    padding: 2rem 0;
+  }
+  .head {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0.5rem 1.1rem;
+  }
+  .score-container {
+    width: 90%;
+    margin: 0.5rem auto;
+    padding: 0.5rem 1.1rem;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  nav ul li {
+    margin-right: 1rem;
+  }
+
+  nav ul {
+    padding: 0;
+  }
+
+  .hero-img img {
+    width: 15rem;
+  }
+  .hero-text .text h1 {
+    font-size: 1.5rem;
+  }
+  .start-quiz-btn {
+    width: 70%;
+    font-size: 0.8rem;
+    padding: 0.6rem;
+  }
+  .user-form {
+    width: 70%;
+  }
+  .alert {
+    width: 60%;
+    left: 20%;
+  }
+
+  /* Topic */
+  .quiz-topic-container {
+    width: 100%;
+  }
+
+  .start-btn {
+    width: 90%;
+    padding: 0.5rem;
+  }
+  .topic-item .topic {
+    margin: 0;
+  }
+
+  /* Quiz */
+  .quiz {
+    width: 80%;
+    padding: 2rem;
+  }
+
+  .quiz-topic {
+    width: 95%;
+  }
+  .add-answer button {
+    width: 35%;
+  }
+  .result-btn,
+  .quit-btn,
+  .play-again-btn {
+    width: 35%;
+  }
+
+  /* Score */
+  .scores {
+    padding: 2rem 0;
+  }
+  .head {
+    width: 90%;
+    margin: 0;
+    padding: 0.5rem 1.1rem;
+  }
+  .score-container {
+    width: 90%;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1.1rem;
+  }
+}

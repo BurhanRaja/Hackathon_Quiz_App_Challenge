@@ -21,6 +21,7 @@ const topicText = document.querySelectorAll(".topic-item .topic");
 const startBtn = document.querySelector(".start-btn");
 const submitBtn = document.querySelector(".submit-btn");
 const quitBtn = document.querySelector(".quit-btn button");
+const playAgainBtn = document.querySelector(".play-again-btn");
 
 // Quiz
 const quizTopic = document.querySelector(".topic-title");
@@ -53,39 +54,37 @@ let timer;
 let timeCounter = 15;
 
 // To get the topic and fetch topic accordingly
-for (let i = 0; i < topicItem.length; i++) {
-  topicItem[i].addEventListener("click", () => {
-    if (document.querySelector(".selected")) {
-      let selected = document.querySelector(".selected");
-      selected.classList.remove("selected");
-    }
-    topicItem[i].classList.add("selected");
-    quizTopic.textContent = topicItem[i].textContent + " Quiz";
-    quizTopic.style.color = "white";
+function initializeQuiz() {
+  for (let i = 0; i < topicItem.length; i++) {
+    topicItem[i].addEventListener("click", () => {
+      if (document.querySelector(".selected")) {
+        let selected = document.querySelector(".selected");
+        selected.classList.remove("selected");
+      }
+      topicItem[i].classList.add("selected");
+      quizTopic.textContent = topicItem[i].textContent + " Quiz";
+      quizTopic.style.color = "white";
 
-    topic = topicText[i].textContent.toLowerCase().split(" ").join("-");
+      topic = topicText[i].textContent.toLowerCase().split(" ").join("-");
 
-    if (topic === "coding") {
-      quizCont.style.backgroundColor = "#ffb703";
-    }
-    if (topic === "modern-art") {
-      quizCont.style.backgroundColor = "#023047";
-    }
-    if (topic === "music") {
-      quizCont.style.backgroundColor = "#219ebc";
-    }
+      if (topic === "coding") {
+        quizCont.style.backgroundColor = "#ffb703";
+      }
+      if (topic === "modern-art") {
+        quizCont.style.backgroundColor = "#023047";
+      }
+      if (topic === "music") {
+        quizCont.style.backgroundColor = "#219ebc";
+      }
 
-    topicData = data[topic];
-    topicData = shuffleQuestions(topicData);
-    allAnwers = getAllAnswer(topicData);
-  });
+      topicData = data[topic];
+      topicData = shuffleQuestions(topicData);
+      allAnwers = getAllAnswer(topicData);
+    });
+  }
 }
 
-// To count the number of questions finished
-let count = 0;
-
-// To start the quiz
-startBtn.addEventListener("click", () => {
+function startQuiz() {
   if (topic !== "") {
     formCont.classList.add("inactive");
     navBar.classList.add("inactive");
@@ -123,6 +122,16 @@ startBtn.addEventListener("click", () => {
       clearTimeout(timer);
     }, 3000);
   }
+}
+
+initializeQuiz();
+
+// To count the number of questions finished
+let count = 0;
+
+// To start the quiz
+startBtn.addEventListener("click", () => {
+  startQuiz();
 });
 
 // On Sumbit an answer
@@ -136,6 +145,9 @@ submitBtn.addEventListener("click", () => {
       flag = true;
     }
   });
+
+  console.log(userAnswer);
+  console.log(allAnwers);
 
   if (!flag) {
     alertCont.classList.remove("inactive");
@@ -207,14 +219,7 @@ resultBtn.addEventListener("click", () => {
 
   let userStorage = JSON.parse(localStorage.getItem("userTrack"));
 
-  if (
-    userStorage &&
-    !userStorage.contains({
-      topic: topic,
-      userAnswer: rightAnswerCount,
-      totalScore: allAnwers.length,
-    })
-  ) {
+  if (userStorage) {
     localStorage.removeItem("userTrack");
     localStorage.setItem(
       "userTrack",
@@ -223,6 +228,7 @@ resultBtn.addEventListener("click", () => {
           topic: topic,
           userAnswer: rightAnswerCount,
           totalScore: allAnwers.length,
+          date: new Date().toLocaleString()
         },
         ...userStorage,
       ])
@@ -235,8 +241,23 @@ resultBtn.addEventListener("click", () => {
           topic: topic,
           userAnswer: rightAnswerCount,
           totalScore: allAnwers.length,
+          date: new Date().toLocaleString()
         },
       ])
     );
   }
+});
+
+// Play Agian
+playAgainBtn.addEventListener("click", () => {
+  count = 0;
+  timeCounter = 15;
+  userAnswer = [];
+  submitBtn.classList.remove("inactive");
+  quitBtn.classList.remove("inactive");
+  endCont.classList.add("inactive");
+  finalResult.textContent = "";
+  message.textContent = "";
+  initializeQuiz();
+  startQuiz();
 });

@@ -8,14 +8,9 @@ if (userDetails) {
     let div = document.createElement("div");
     let topic = document.createElement("p");
     let score = document.createElement("p");
+    let date = document.createElement("p");
 
-    div.style.padding = "1rem 2rem";
-    div.style.display = "flex";
-    div.style.justifyContent = "space-between";
-    div.style.alignItems = "center";
-    div.style.backgroundColor = "white";
-    div.style.width = "50%";
-    div.style.margin = "1rem auto";
+    div.setAttribute("class", "score-container");
 
     topic.textContent = userDetails[i].topic.toUpperCase();
     topic.style.fontWeight = "bolder";
@@ -24,8 +19,11 @@ if (userDetails) {
     score.style.fontWeight = "bolder";
     score.style.fontSize = "1.1rem";
 
+    date.textContent = userDetails[i].date;
+
     div.appendChild(topic);
     div.appendChild(score);
+    div.appendChild(date);
 
     scoreCont.appendChild(div);
   }
