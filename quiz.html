@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Quiz</title>
+    <script type="module" crossorigin src="/assets/style.c0ed6924.js"></script>
+    <script type="module" crossorigin src="/assets/index.73a5485b.js"></script>
+    <link rel="stylesheet" href="/assets/style.a2deafbc.css">
+  </head>
+  <body>
+    <!-- Navbar Started -->
+    <header>
+      <nav class="navbar" style="background-color: #8ecae6">
+        <h3>Quiz Pop</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="/quiz.html">Quiz</a></li>
+          <li><a href="/score.html">Score</a></li>
+        </ul>
+        <p class="username"></p>
+      </nav>
+    </header>
+    <!-- Navbar Ended -->
+
+    <!-- Content Started -->
+    <main>
+      <div class="alert inactive">
+        <p></p>
+      </div>
+      <div class="form-container">
+        <div class="quiz-topic-container">
+          <h1 class="welcome-to-quiz">Welcome to Quiz App</h1>
+          <p class="topic-select">Select Topic</p>
+          <div class="topic-item" style="background-color: #219ebc">
+            <p class="topic">Music</p>
+          </div>
+          <div class="topic-item" style="background-color: #023047">
+            <p class="topic">Modern Art</p>
+          </div>
+          <div class="topic-item" style="background-color: #ffb703">
+            <p class="topic">Coding</p>
+          </div>
+        </div>
+        <a><button class="start-btn">Start</button></a>
+      </div>
+
+      <div class="quiz-container inactive">
+        <div class="quiz-topic">
+          <p class="topic-title"></p>
+          <p class="time">15</p>
+        </div>
+        <div class="quiz">
+          <div class="question">
+            <p></p>
+          </div>
+          <div class="options"></div>
+          <div class="add-answer">
+            <button class="submit-btn">Next</button>
+            <a class="quit-btn" href="/quiz.html"><button>Quit</button></a>
+          </div>
+          <div class="end-message inactive">
+            <h1 class="message"></h1>
+            <h2 class="final-result"></h2>
+            <button class="result-btn">Get Result</button>
+            <button class="play-again-btn">Play Again</button>
+            <a class="quit-btn" href="./quiz.html"><button>Quit</button></a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Content Ended -->
+
+    
+    
+  </body>
+</html>
